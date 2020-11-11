@@ -1,5 +1,6 @@
 $jtds_version     = '1.3.3'
-$dest_dir         = "$home/bin/sqldeveloper/jdbc/lib"
+$sqldev_dir       = "$home/bin/sqldeveloper/"
+$dest_dir         = "$sqldev_dir/jdbc/lib"
 $prod_pref_dir    = "$env:appdata/SQL Developer/system19.2.1.247.2212/o.sqldeveloper"
 $prod_pref_name   = "$prod_pref_dir/product-preferences.xml"
 
@@ -31,3 +32,7 @@ $db_config = $prod_pref_xml.SelectSingleNode('//*[@n="DBConfig"]')
 $db_config.AppendChild($list_TPDRIVER)
 
 $prod_pref_xml.Save($prod_pref_name)
+
+# ----- Copy x64\SSO\ntlmauth.dll
+
+copy-item jtds/x64/SSO/ntlmauth.dll  "$env:JAVA_HOME/jre/bin"
